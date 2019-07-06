@@ -9,28 +9,65 @@
     />
   </head>
   <body>
-    <form class="offset-sm-4 col-sm-4 jumbotron">
+    <div class="offset-sm-4 col-sm-4 jumbotron">
       <div class="form-group">
-        <input class="form-control" type="number" />
+        <input id="v1" class="form-control" type="number" />
       </div>
       <div class="form-group text-center">
-        <button class="btn btn-info">op</button>
+        <button class="btn btn-info" id="op">op</button>
       </div>
       <div class="form-group">
-        <input class="form-control" type="number" />
+        <input id="v2" class="form-control" type="number" />
       </div>
       <div class="form-group">
         <div class="float-left">
-          <button class="btn btn-primary">+</button>
-          <button class="btn btn-success">-</button>
-          <button class="btn btn-danger">*</button>
-          <button class="btn btn-warning">/</button>
+          <button id="plus" class="btn btn-primary">+</button>
+          <button id="moins" class="btn btn-success">-</button>
+          <button id="multiplication" class="btn btn-danger">*</button>
+          <button id="division" class="btn btn-warning">/</button>
         </div>
-        <div class="float-right">
-          Résultat =
-        </div>
+        <div class="float-right">Résultat = <b id="resultat"></b></div>
       </div>
-    </form>
+    </div>
   </body>
-  <script></script>
+  <script>
+    var v1, v2;
+    function convertir() {
+      v1 = document.getElementById("v1").value;
+      v2 = document.getElementById("v2").value;
+      v1 = parseFloat(v1);
+      v2 = parseFloat(v2);
+    }
+    function resultat(result) {
+      document.getElementById("resultat").innerHTML = result;
+    }
+    function showChoosedOperator(op) {
+      document.getElementById("op").innerHTML = op;
+    }
+    var plus = function() {
+      convertir();
+      resultat(v1 + v2);
+      showChoosedOperator("+");
+    };
+    var moins = function() {
+      convertir();
+      resultat(v1 - v2);
+      showChoosedOperator("-");
+    };
+    var multiplication = function() {
+      convertir();
+      resultat(v1 * v2);
+      showChoosedOperator("*");
+    };
+    var division = function() {
+      convertir();
+      resultat(v1 / v2);
+      showChoosedOperator("/");
+    };
+
+    document.getElementById("plus").onclick = plus;
+    document.getElementById("moins").onclick = moins;
+    document.getElementById("multiplication").onclick = multiplication;
+    document.getElementById("division").onclick = division;
+  </script>
 </html>
